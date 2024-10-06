@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos globais */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #FF4500; /* cor laranja */
+            text-align: center;
+            margin-top: 20px;
+        }
+        p {
+            font-size: 1rem;
+            text-align: center;
+            color: #666;
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .content_markdown {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-top: 20px;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+        }
+        a {
+            text-decoration: none;
+            color: #FF4500; /* cor laranja */
+            font-weight: bold;
+        }
+        a:hover {
+            color: #333; /* muda para uma cor escura ao passar o mouse */
+        }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <h1>{{ post.title }}</h1>
+        <p>Publicado em: {{ post.created_at|date:"d M Y" }}</p>
+        
+        <div class="content_markdown">
+            {{ post.content_markdown|safe }}
+        </div>
+
+        <div class="back-link">
+            <a href="{% url 'post_list' %}">&larr; Voltar para lista de posts</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Blog Plataforma. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
+
