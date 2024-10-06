@@ -9,13 +9,14 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
-from pathlib import Path
-from decouple import config, Csv
-import dj_database_url
 from functools import partial
-from pathlib import Path
 import os
+from decouple import config
+from pathlib import Path
+from decouple import Csv
+import dj_database_url
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -106,28 +107,67 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'America/Sao_Paulo'
+LANGUAGE_CODE = "pt-br"
+
+TIME_ZONE = "America/Sao_Paulo"
 
 USE_I18N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
+# configuração de ambiente de desenvolvimento
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
-AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default=None)
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
+AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID", default=None)
 COLLECTFAST_ENABLED = False
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# STORAGE CONFIGURATION IN S3 AWS
+# ------------------------------------------------------------------------------
+
+if AWS_ACCESS_KEY_ID:
+    AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = config("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_OBJECT_PARAMETERS = {
+        "CacheControl": "max-age=86400",
+    }
+    AWS_PRELOAD_METADATA = True
+    AWS_AUTO_CREATE_BUCKET = False
+    AWS_QUERYSTRING_AUTH = True
+    AWS_DEFAULT_ACL = "private"
+
+    COLLECTFAST_ENABLED = True
+
+    # Static Assets
+    # ------------------------------------------------------------------------------
+    STATICFILES_STORAGE = "s3_folder_storage.s3.StaticStorage"
+    STATIC_S3_PATH = "static"
+    STATIC_ROOT = f"/{STATIC_S3_PATH}/"
+    STATIC_URL = f"//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{STATIC_S3_PATH}/"
+    ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
+
+    # Upload Media Folder
+    DEFAULT_FILE_STORAGE = "s3_folder_storage.s3.DefaultStorage"
+    DEFAULT_S3_PATH = "media"
+    MEDIA_ROOT = f"/{DEFAULT_S3_PATH}/"
+    MEDIA_URL = f"//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{DEFAULT_S3_PATH}/"
+
+    INSTALLED_APPS.append("s3_folder_storage")
+    INSTALLED_APPS.append("storages")
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+
+SENTRY_DSN = config("SENTRY_DSN", default=None)
+if SENTRY_DSN:
+    sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()])
