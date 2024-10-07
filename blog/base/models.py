@@ -4,6 +4,7 @@ from markdown2 import Markdown
 
 markdowner = Markdown()
 
+
 class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
@@ -22,4 +23,4 @@ class Post(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ["-created_at"]
