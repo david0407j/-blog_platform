@@ -42,14 +42,14 @@ Utiliza o sistema de templates do Django (DTL) para renderizar o conteúdo do bl
 1. **Instale o Poetry**: Se ainda não tiver o Poetry instalado, siga as instruções de instalação.
 2. **Clone o Repositório**:
 
-Crie e ative o ambiente virtual: O Poetry gerencia automaticamente o ambiente virtu
+**Crie e ative o ambiente virtual: O Poetry gerencia automaticamente o ambiente virtu**
 poetry shell
 
-Instale as dependênci
+**Instale as dependênci**
 poetry install
 
-Rode as migrações do banco de dad
+**Rode as migrações do banco de dad**
 poetry run python manage.py migrate
 
-Inicie o servidor de desenvolvimen
+**Inicie o servidor de desenvolvimen**
 poetry run python man
