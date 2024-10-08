@@ -53,6 +53,6 @@ poetry install
 poetry run python manage.py migrate
 
 **Inicie o servidor de desenvolvimen**
-poetry run python man
+poetry run python 
 
 
