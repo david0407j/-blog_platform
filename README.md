@@ -41,17 +41,18 @@ Utiliza o sistema de templates do Django (DTL) para renderizar o conteúdo do bl
 ## Como Executar o Projeto
 1. **Instale o Poetry**: Se ainda não tiver o Poetry instalado, siga as instruções de instalação.
 2. **Clone o Repositório**:
-   ```bash
-   git clone https://github.com/seu-usuario/blog-platform-markdown.git
-   cd blog-platform-markdown
-   
-Crie e ative o ambiente virtual: O Poetry gerencia automaticamente o ambiente virtual.
+<<<<<<< blog
+
+**Crie e ative o ambiente virtual: O Poetry gerencia automaticamente o ambiente virtu**
 poetry shell
-Instale as dependências
+
+**Instale as dependênci**
 poetry install
-Rode as migrações do banco de dados:
+
+**Rode as migrações do banco de dad**
 poetry run python manage.py migrate
-Inicie o servidor de desenvolvimento
-poetry run python manage.py runserver
+
+**Inicie o servidor de desenvolvimen**
+poetry run python man
 
 
