@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,42 +8,98 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f0f0f0;
             color: #333;
+            margin: 0;
+            padding: 0;
         }
+        /* Barra de navegação */
+        .navbar {
+            background-color: #000;
+            padding: 15px;
+            text-align: center;
+        }
+        .navbar a {
+            color: #FF4500;
+            margin: 0 15px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .navbar a:hover {
+            color: #fff;
+        }
+
+        /* Layout da lista de posts */
         .post-list {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
         .post {
-            margin-bottom: 20px;
-            padding: 20px;
-            background: white;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        h1 {
+            color: #FF4500;
+            text-align: center;
+            margin-bottom: 50px;
         }
         h2 {
-            color: #FF4500; /* cor laranja */
+            color: #FF4500;
+            font-size: 24px;
+            margin: 0 0 10px;
+        }
+        p {
+            margin: 10px 0;
+            color: #666;
         }
         a {
             text-decoration: none;
             color: #FF4500;
+            font-weight: 700;
         }
         a:hover {
-            color: #333;
+            color: #000;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .post-list {
+                padding: 10px;
+            }
+            .post {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Barra de navegação -->
+    <div class="navbar">
+        <a href="/">Início</a>
+        <a href="/posts">Posts</a>
+        <a href="/sobre">Sobre</a>
+        <a href="/contato">Contato</a>
+    </div>
+
+    <!-- Lista de posts -->
     <div class="post-list">
         <h1>Lista de Posts</h1>
         {% for post in posts %}
             <div class="post">
                 <h2><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></h2>
                 <p>Publicado em: {{ post.created_at|date:"d M Y" }}</p>
-                <p>{{ post.content|truncatewords:30 }}</p>  <!-- Exibe os primeiros 30 palavras -->
+                <p>{{ post.content|truncatewords:30 }}</p> <!-- Exibe os primeiros 30 palavras -->
             </div>
         {% empty %}
             <p>Nenhum post disponível.</p>
