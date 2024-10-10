@@ -12,7 +12,6 @@ python-decouple = "^3.8"
 dj-database-url = "^2.2.0"
 flake8 = "^7.1.0"
 collectfast = "^2.2.0"
-django = "^5.0.7"
 django-debug-toolbar = "^4.4.6"
 
 pytest = "^8.3.2"
@@ -24,6 +23,8 @@ psycopg2 = "^2.9.9"
 gunicorn = "^23.0.0"
 sentry-sdk = "^2.15.0"
 markdown2 = "^2.5.0"
+django = "^5.1.2"
+
 
 
 [build-system]

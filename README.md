@@ -38,12 +38,15 @@ Utiliza o sistema de templates do Django (DTL) para renderizar o conteúdo do bl
 - **Flake8**: Garante que o código siga as boas práticas do PEP8, detectando problemas de estilo e qualidade.
 - **CI/CD**: Configuração de Integração Contínua para executar automaticamente testes e linting ao fazer push no repositório. Isso garante que o código enviado atenda aos padrões de qualidade estabelecidos.
 
-## Como Executar o Projeto
-1. **Instale o Poetry**: Se ainda não tiver o Poetry instalado, siga as instruções de instalação.
-2. **Clone o Repositório**:
-<<<<<<< blog
+Como Executar o Projeto
+Instale o Poetry: Se ainda não tiver o Poetry instalado, siga as instruções de instalação.
 
-**Crie e ative o ambiente virtual: O Poetry gerencia automaticamente o ambiente virtu**
+Clone o Repositório 
+
+git clone https://github.com/seu-usuario/blog-platform-markdown.git
+cd blog-platform-markdown
+
+Crie e ative o ambiente virtual: O Poetry gerencia automaticamente o ambiente virtual.
 poetry shell
 
 **Instale as dependênci**
@@ -52,7 +55,6 @@ poetry install
 **Rode as migrações do banco de dad**
 poetry run python manage.py migrate
 
-**Inicie o servidor de desenvolvimen**
-poetry run python 
-
+Inicie o servidor de desenvolvimento:
+poetry run python manage.py runserver
 
