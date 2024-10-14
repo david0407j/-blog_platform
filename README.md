@@ -43,7 +43,7 @@ Instale o Poetry: Se ainda não tiver o Poetry instalado, siga as instruções d
 
 Clone o Repositório 
 
-**git clone https://github.com/seu-usuario/blog-platform-markdown.git**
+**git clone https://github.com/seu-usuario/blog-platform.git**
 cd blog-platform-markdown
 
 **Crie e ative o ambiente virtual: O Poetry gerencia automaticamente o ambiente virtual.**
