@@ -1,10 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Posts</title>
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'img/lista.ico' %}" />
+
+    <!-- CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -13,12 +30,14 @@
             margin: 0;
             padding: 0;
         }
+
         /* Barra de navegação */
         .navbar {
             background-color: #000;
             padding: 15px;
             text-align: center;
         }
+
         .navbar a {
             color: #FF4500;
             margin: 0 15px;
@@ -26,6 +45,7 @@
             text-decoration: none;
             transition: color 0.3s ease;
         }
+
         .navbar a:hover {
             color: #fff;
         }
@@ -36,6 +56,7 @@
             margin: 40px auto;
             padding: 0 20px;
         }
+
         .post {
             margin-bottom: 30px;
             padding: 25px;
@@ -44,29 +65,35 @@
             border-radius: 12px;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
+
         .post:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
         }
+
         h1 {
             color: #FF4500;
             text-align: center;
             margin-bottom: 50px;
         }
+
         h2 {
             color: #FF4500;
             font-size: 24px;
             margin: 0 0 10px;
         }
+
         p {
             margin: 10px 0;
             color: #666;
         }
+
         a {
             text-decoration: none;
             color: #FF4500;
             font-weight: 700;
         }
+
         a:hover {
             color: #000;
         }
@@ -76,22 +103,28 @@
             .post-list {
                 padding: 10px;
             }
+
             .post {
                 padding: 20px;
             }
         }
     </style>
 </head>
+
 <body>
-
-    <!-- Barra de navegação -->
-    <div class="navbar">
-        <a href="/">Início</a>
-        <a href="/posts">Posts</a>
-        <a href="/sobre">Sobre</a>
-        <a href="/contato">Contato</a>
+<!-- Navbar -->
+ <!-- Barra de navegação -->
+<nav class="navbar">
+    <div class="container">
+        <a href="{% url 'post_list' %}" class="navbar-brand">Meu Blog</a>
+        <ul class="navbar-menu">
+            <li><a href="/">Início</a></li>
+            <li><a href="">Posts</a></li>
+            <li><a href="">Sobre</a></li>
+            <li><a href="">Contato</a></li>
+        </ul>
     </div>
-
+</nav>
     <!-- Lista de posts -->
     <div class="post-list">
         <h1>Lista de Posts</h1>
@@ -99,13 +132,21 @@
             <div class="post">
                 <h2><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></h2>
                 <p>Publicado em: {{ post.created_at|date:"d M Y" }}</p>
+
+                <!-- Verifica se há uma imagem associada ao post -->
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width:100%; height:auto;">
+                {% endif %}
+
                 <p>{{ post.content|truncatewords:30 }}</p> <!-- Exibe os primeiros 30 palavras -->
+                <a href="{% url 'post_detail' slug=post.slug %}">Leia mais</a>
             </div>
         {% empty %}
             <p>Nenhum post disponível.</p>
         {% endfor %}
     </div>
-
 </body>
+
 </html>
+
 
