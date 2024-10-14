@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang=pt-br>
 <head>
@@ -5,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ post.title }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{% static 'img/lista.ico' %}" />
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
     <style>
         /* Estilos globais */
         body {
@@ -79,11 +86,15 @@
             <a href="{% url 'post_list' %}">&larr; Voltar para lista de posts</a>
         </div>
     </div>
-
     <footer>
-        <p>&copy; 2024 Blog Plataforma. Todos os direitos reservados.</p>
+        <p>&copy; {{ current_year }} Blog Plataforma. Todos os direitos reservados.</p>
+        <div class="social-media">
+            <a href="https://facebook.com" target="_blank">Facebook</a> |
+            <a href="https://twitter.com" target="_blank">Twitter</a> |
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+        </div>
     </footer>
-
+    
 </body>
 </html>
 
