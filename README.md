@@ -43,18 +43,18 @@ Instale o Poetry: Se ainda não tiver o Poetry instalado, siga as instruções d
 
 Clone o Repositório 
 
-git clone https://github.com/seu-usuario/blog-platform-markdown.git
+**git clone https://github.com/seu-usuario/blog-platform-markdown.git**
 cd blog-platform-markdown
 
-Crie e ative o ambiente virtual: O Poetry gerencia automaticamente o ambiente virtual.
+**Crie e ative o ambiente virtual: O Poetry gerencia automaticamente o ambiente virtual.**
 poetry shell
 
 **Instale as dependênci**
 poetry install
 
-**Rode as migrações do banco de dad**
+**Rode as migrações do banco de dado**
 poetry run python manage.py migrate
 
-Inicie o servidor de desenvolvimento:
+**Inicie o servidor de desenvolvimento:**
 poetry run python manage.py runserver
 
