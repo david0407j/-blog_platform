@@ -1,72 +1,154 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang=pt-br>
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ post.title }}</title>
+    <!-- Fontes do Google e Font Awesome para ícones -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{% static 'img/lista.ico' %}" />
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <!-- Ícones de redes sociais -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         /* Estilos globais */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9;
             color: #333;
         }
+
         h1 {
-            font-size: 2.5rem;
-            color: #FF4500; /* cor laranja */
+            font-size: 3rem;
+            color: #FF4500;
             text-align: center;
             margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
+
         p {
             font-size: 1rem;
             text-align: center;
             color: #666;
+            margin-bottom: 20px;
         }
+
+        /* Estilo para o contêiner principal */
         .content {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 25px;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
             background: #fff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            transition: box-shadow 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
         }
+
         .content:hover {
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
         }
+
         .content_markdown {
-            font-size: 1.1rem;
-            line-height: 1.6;
+            font-size: 1.2rem;
+            line-height: 1.8;
             color: #333;
-            margin-top: 20px;
+            margin-top: 25px;
             text-align: justify;
         }
+
+        /* Estilo para o link de voltar */
         .back-link {
             display: block;
             text-align: center;
             margin-top: 30px;
         }
+
         a {
             text-decoration: none;
-            color: #FF4500; /* cor laranja */
+            color: #FF4500;
             font-weight: bold;
+            transition: color 0.3s ease;
         }
+
         a:hover {
-            color: #333; /* muda para uma cor escura ao passar o mouse */
+            color: #333;
         }
+
+        /* Estilo para redes sociais no footer */
         footer {
-            margin-top: 40px;
+            margin-top: 50px;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #666;
+            padding: 20px 0;
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .social-media {
+            margin-top: 10px;
+        }
+
+        .social-media a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-media a:hover {
+            color: #FF4500;
+        }
+
+        .social-media a i {
+            margin-right: 5px;
+        }
+
+        /* Efeito visual para chamar mais atenção aos ícones */
+        .social-media a:hover i {
+            transform: scale(1.2);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .content {
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            .content_markdown {
+                font-size: 1.1rem;
+            }
+
+            footer {
+                padding: 15px 0;
+            }
         }
     </style>
 </head>
+
 <body>
 
+    <!-- Conteúdo do Post -->
     <div class="content">
         <h1>{{ post.title }}</h1>
         <p>Publicado em: {{ post.created_at|date:"d M Y" }}</p>
@@ -80,11 +162,19 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Blog Plataforma. Todos os direitos reservados.</p>
+        <p>&copy; {{ current_year }} Blog Plataforma. Todos os direitos reservados.</p>
+        <div class="social-media">
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i>Facebook</a> |
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i>Twitter</a> |
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+        </div>
     </footer>
-
+    
 </body>
+
 </html>
+
 
 
