@@ -91,6 +91,12 @@ DATABASES = {
     "default": config("DATABASE_URL", default=default_db_url, cast=parse_database)
 }
 
+# configuração Debug Tollbar
+INTERNAL_IPS = config("INTERNAL_IPS", cast=Csv(), default="127.0.0.1")
+
+if DEBUG:
+    INSTALLED_APPS.append("debug_toolbar")
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
