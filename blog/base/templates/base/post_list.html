@@ -1,90 +1,80 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ blog_name }} - Posts Recentes</title>
+    <title>{% block title %} blog_platform {% endblock title %}</title>
+
+    <!-- Ícone da página -->
     <link rel="icon" type="image/png" href="{% static 'img/lista.ico' %}" />
-    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/scripts.js' %}"></script>
-    <!-- Link para ícones de redes sociais (Font Awesome) -->
+    
+    <!-- Font Awesome para ícones sociais -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- Estilo Customizado -->
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            padding-top: 60px;
+            background-color: #f8f9fa;
         }
 
-        /* Navbar styling */
+        /* Navbar centralizada na tela */
         .navbar {
             background-color: #343a40;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .navbar-brand {
             font-weight: bold;
+            font-size: 1.8rem;
             color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav {
+            margin: 0 auto;
         }
 
         .navbar-nav .nav-link {
             color: #fff;
-            margin-right: 15px;
+            margin-right: 20px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
             transition: color 0.3s ease;
         }
 
         .navbar-nav .nav-link:hover {
             color: #FF5722;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
         }
 
-        /* Hero section */
-        .hero-section {
-            background-image: url("{% static 'img/hero-bg.jpg' %}");
-            background-size: cover;
-            background-position: center;
-            padding: 120px 0;
+        .navbar-nav .btn-outline-light {
+            border: 2px solid #FF5722;
+            color: #FF5722;
+            padding: 8px 18px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .btn-outline-light:hover {
+            background-color: #FF5722;
             color: #fff;
+        }
+
+        /* Hero Section */
+        .hero-section {
             text-align: center;
-            position: relative;
+            padding: 100px 0; /* Ajuste o padding conforme necessário */
+            background-color: #fff; /* Mude para a cor desejada */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .hero-section:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 1;
-        }
-
-        .hero-section h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            z-index: 2;
-            position: relative;
-        }
-
-        .hero-section p {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            z-index: 2;
-            position: relative;
-        }
-
-        .hero-section a {
-            z-index: 2;
-            position: relative;
-        }
-
-        /* Post list styling */
+        /* Post List styling */
         .post-list {
             max-width: 1100px;
             margin: 60px auto;
@@ -158,63 +148,54 @@
             text-align: center;
         }
 
-        .barra-contato {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
-        }
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .navbar {
+                width: 95%;
+            }
 
-        .barra-contato a {
-            color: #FFD700;
-            text-decoration: none;
-            font-weight: bold;
-        }
+            .navbar-nav .nav-link {
+                font-size: 1rem;
+                padding: 8px 15px;
+                margin-right: 10px;
+            }
 
-        .barra-contato a:hover {
-            text-decoration: underline;
-        }
+            .navbar-nav .btn-outline-light {
+                padding: 7px 14px;
+            }
 
-        /* Estilos para os ícones de redes sociais */
-        .redes-sociais {
-            margin-top: 10px;
-        }
-
-        .redes-sociais a {
-            color: white;
-            margin: 0 10px;
-            font-size: 20px;
-            text-decoration: none;
-        }
-
-        .redes-sociais a:hover {
-            color: #FFD700;
+            h1 {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
 
 <body>
-
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'post_list' %}">{{ blog_name }}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'post_list' %}">Posts</a>
+                        <a class="nav-link active" href="{% url 'post_list' %}">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'post_list' %}">Sobre</a>
+                        <a class="nav-link" href="#about">Sobre</a>
                     </li>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#posts">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contato</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="btn btn-outline-light" href="#">Criar Post</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -222,7 +203,7 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="container">
+        <div class="container text-center">
             <h1>Bem-vindo ao {{ blog_name }}</h1>
             <p>Descubra os artigos mais recentes sobre {{ blog_theme }} e muito mais.</p>
             <a href="#posts" class="btn btn-primary btn-lg">Ver Posts</a>
@@ -247,16 +228,11 @@
         {% endfor %}
     </div>
 
-    <!-- Barra de Contato -->
-    <div class="barra-contato">
-        <p>Entre em contato: 
-            <a href="mailto:davidson@gmail.com">davidson@gmail.com.com</a> | 
-            Telefone: (31) 999877987
-        </p>
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 {{ blog_name }}. Todos os direitos reservados.</p>
-    </footer>
-</body>
+    <!-- Incluindo o footer -->
+    {% include 'base/footer.html' with contato_email='davidson@gmail.com' only %}
 
+    <!-- Scripts no final do body para melhor performance -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
 </html>
