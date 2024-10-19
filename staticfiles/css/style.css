@@ -1,8 +1,306 @@
-
-.main-footer{
-    background-color: #9fd25f;
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding-top: 60px;
 }
 
-.rights{
-    background-color: #82b641;
+/* Navbar styling */
+.navbar {
+    background-color: #343a40;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #fff;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    margin-right: 15px;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #FF5722;
+}
+
+/* Hero section */
+.hero-section {
+    background-image: url("{% static 'img/hero-bg.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    padding: 120px 0;
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+.hero-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    z-index: 2;
+    position: relative;
+}
+
+.hero-section p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    z-index: 2;
+    position: relative;
+}
+
+.hero-section a {
+    z-index: 2;
+    position: relative;
+}
+
+/* Post list styling */
+.post-list {
+    max-width: 1100px;
+    margin: 60px auto;
+}
+
+.post {
+    margin-bottom: 40px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.post img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.post-title {
+    color: #FF5722;
+    font-size: 28px;
+    margin-top: 20px;
+}
+
+.post-title a {
+    text-decoration: none;
+    color: #FF5722;
+}
+
+.post-title a:hover {
+    color: #333;
+}
+
+.post-meta {
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.post-excerpt {
+    font-size: 18px;
+    color: #666;
+}
+
+.read-more {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #FF5722;
+    text-decoration: none;
+}
+
+.read-more:hover {
+    color: #000;
+}
+
+/* Footer styling */
+footer {
+    background-color: #343a40;
+    padding: 40px 0;
+    color: #fff;
+}
+
+footer p {
+    margin: 0;
+    text-align: center;
+}
+
+.barra-contato {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.barra-contato a {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.barra-contato a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para os ícones de redes sociais */
+.redes-sociais {
+    margin-top: 10px;
+}
+
+.redes-sociais a {
+    color: white;
+    margin: 0 10px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.redes-sociais a:hover {
+    color: #FFD700;
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #FF4500;
+    text-align: center;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p {
+    font-size: 1rem;
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Estilo para o contêiner principal */
+.content {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.content:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.content_markdown {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #333;
+    margin-top: 25px;
+    text-align: justify;
+}
+
+/* Estilo para o link de voltar */
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: #FF4500;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #333;
+}
+
+/* Estilo para redes sociais no footer */
+footer {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 1rem;
+    color: #666;
+    padding: 20px 0;
+    background-color: #343a40;
+    color: #fff;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.social-media {
+    margin-top: 10px;
+}
+
+.social-media a {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-media a:hover {
+    color: #FF4500;
+}
+
+.social-media a i {
+    margin-right: 5px;
+}
+
+/* Efeito visual para chamar mais atenção aos ícones */
+.social-media a:hover i {
+    transform: scale(1.2);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .content {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .content_markdown {
+        font-size: 1.1rem;
+    }
+
+    footer {
+        padding: 15px 0;
+    }
 }
